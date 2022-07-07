@@ -32,8 +32,9 @@ public class Page_Signin extends PageTemplate {
 	public Boolean signInWithUserPassword(String username, String password, boolean remember) {
 		String xpathUserLoggedWelcome = "//span[@class='hi-user containMiniTitle ng-binding']";
 		try {
-
+			Keywords.waitForLoadPage(driver, By.xpath(xpathInputUsername));
 			Keywords.writeElement(driver, By.xpath(xpathInputUsername), username);
+			Keywords.waitForLoadPage(driver, By.xpath(xpathInputPassword));
 			Keywords.writeElement(driver, By.xpath(xpathInputPassword), password);
 			if (remember) {
 				Keywords.waitForLoadPage(driver, By.xpath(xpathRemember));
