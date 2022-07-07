@@ -15,7 +15,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Copyright: Softtek. Description: In this file contains functional keywords to
  * use in the scripts
  * 
- * @author Juan Carlos Hern·ndez Castro<jc.hernandez>
+ * @author Juan Carlos Hern√°ndez Castro<jc.hernandez>
  *
  */
 
@@ -100,5 +100,12 @@ public class Keywords {
 		WebElement element = driver.findElement(by);
 		element.sendKeys(key);
 		System.out.println("sent key to element " + by.toString() + " - Value: " + key.toString());
+  }
+
+	public static String getTextFromInput(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		System.out.println("Get text " + element.getText() + " from element " + by.toString());
+		return element.getAttribute("value");
 	}
 }
