@@ -38,7 +38,7 @@ public class TSD_ShoppingCart {
 		return dataProviderObject;
 	}
 	
-	@Test(dataProvider = "excel-data", description = "edits items in cart")
+	@Test(dataProvider = "excel-data", description = "edits items in cart", priority = 1)
 	public void editCartItems(String product) {
 		try {
 			Page_Navbar navBar = new Page_Navbar(driver);
@@ -59,7 +59,7 @@ public class TSD_ShoppingCart {
 		}
 	}
 	
-	@Test(dataProvider = "excel-data", description = "delete items from cart")
+	@Test(dataProvider = "excel-data", description = "delete items from cart",priority = 2)
 	public void deleteCartItems(String product) {
 		try {
 			Page_Navbar navBar = new Page_Navbar(driver);
@@ -77,7 +77,7 @@ public class TSD_ShoppingCart {
 		}
 	}
 	
-	@Test(dataProvider = "excel-data", description = "initiates check out process")
+	@Test(dataProvider = "excel-data", description = "initiates check out process",priority = 3)
 	public void checkOutItems() {
 		try {
 			Page_Navbar navBar = new Page_Navbar(driver);
@@ -106,7 +106,7 @@ public class TSD_ShoppingCart {
 		driverPath = excelData.getValue("driverPath");
 		dataPath = excelData.getValue("dataPath");
 		sheetData = excelData.getValue("shoppingCartData");
-		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 1);
+		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 2);
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		driver = new ChromeDriver();
 	}
