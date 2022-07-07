@@ -39,6 +39,8 @@ public class TSD_CreateAccount {
 
 	@DataProvider(name = "excel-data")
 	public Object[][] excelDP() throws IOException {
+		
+		//If excel data is empty we set an object for the test cases
 		if (Objects.equals(null, dataProviderObject)) {
 			return new Object[][] { new Object[] { "jc", "carlos@test.com", "demo123A", "demo123A", "Test",
 					"Test", "12345678", "MX", "CDMX", "Street SN", "Iztacalco", "11000" }, };
@@ -46,7 +48,7 @@ public class TSD_CreateAccount {
 		return dataProviderObject;
 	}
 
-	@Test(dataProvider = "excel-data", description = "Create a new account")
+	@Test(dataProvider = "excel-data", description = "Create a new account accessing directly from the url")
 	public void createNewAccount(String username, String email, String password, String confirmPassword,
 			String firstName, String lastName, String phoneNumber, String country, String city, String address,
 			String state, String postalCode) {
@@ -65,7 +67,7 @@ public class TSD_CreateAccount {
 		}
 	}
 	
-	@Test(dataProvider = "excel-data", description = "Create a new account from sigin")
+	@Test(dataProvider = "excel-data", description = "Create a new account from sigin popup")
 	public void createNewAccountFromSignin(String username, String email, String password, String confirmPassword,
 			String firstName, String lastName, String phoneNumber, String country, String city, String address,
 			String state, String postalCode) {

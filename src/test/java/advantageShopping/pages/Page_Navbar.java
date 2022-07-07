@@ -6,6 +6,14 @@ import org.openqa.selenium.WebDriver;
 import advantageShopping.support.Keywords;
 import advantageShopping.templates.PageTemplate;
 
+/**
+ * Copyright: Softtek. Description: In this file contains the page model for
+ * Navbar and required functions.
+ * 
+ * @author Juan Carlos Hernández Castro<jc.hernandez>
+ *
+ */
+
 public class Page_Navbar extends PageTemplate {
 
 	private String xpathLogoHome = "//nav//div[@class='logo']//a";
@@ -23,7 +31,7 @@ public class Page_Navbar extends PageTemplate {
 	public Page_Navbar(WebDriver driver) {
 		super(driver);
 	}
-	
+
 	public Boolean goToHome() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLogoHome));
@@ -33,7 +41,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToOurProducts() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkOurProducts));
@@ -43,7 +51,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToSpecialOffer() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkSpecialOffer));
@@ -53,7 +61,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToPopularItems() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkPopularItems));
@@ -63,7 +71,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToContactUs() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkContactUs));
@@ -73,7 +81,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToSearch() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkSearch));
@@ -83,7 +91,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToProfileUser() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkUser));
@@ -93,7 +101,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToShoppingCart() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkShoppingCart));
@@ -103,7 +111,7 @@ public class Page_Navbar extends PageTemplate {
 			return false;
 		}
 	}
-	
+
 	public Boolean goToHelp() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkHelp));

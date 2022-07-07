@@ -14,9 +14,18 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import java.util.Dictionary;
 import java.util.Hashtable;
 
+/**
+ * Copyright: Softtek. Description: In this file contains the utils function for
+ * excel
+ * 
+ * @author Juan Carlos Hernández Castro<jc.hernandez>
+ *
+ */
+
 public class ExcelPropertyLoader {
 	private Dictionary<String, String> dic;
 
+	// Read excel file and set it to dic variable
 	public void LoadFile(String rutaArchivoExcel) {
 		try {
 			FileInputStream inputStream = new FileInputStream(new File(rutaArchivoExcel));
@@ -40,6 +49,7 @@ public class ExcelPropertyLoader {
 		}
 	}
 
+	// Read the specified sheet and return an object to use it as data provider
 	public String[][] getExcelData(String fileName, String sheetName, int numberOfColumns) {
 
 		String[][] data = null;

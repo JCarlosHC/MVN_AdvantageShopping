@@ -6,6 +6,14 @@ import org.openqa.selenium.WebDriver;
 import advantageShopping.support.Keywords;
 import advantageShopping.templates.PageTemplate;
 
+/**
+ * Copyright: Softtek. Description: In this file contains the page model for
+ * Create Account and required functions.
+ * 
+ * @author Juan Carlos Hernández Castro<jc.hernandez>
+ *
+ */
+
 public class Page_CreateAccount extends PageTemplate {
 
 	private String xpathUsername = "//input[@name='usernameRegisterPage']";
@@ -29,6 +37,7 @@ public class Page_CreateAccount extends PageTemplate {
 		super(driver);
 	}
 
+	//This function create a new account and validate the results
 	public Boolean createAccount(String username, String email, String password, String confirmPassword,
 			String firstName, String lastName, String phoneNumber, String country, String city, String address,
 			String state, String postalCode) {
@@ -70,17 +79,17 @@ public class Page_CreateAccount extends PageTemplate {
 					// Here we can add logout
 					return true;
 				} else {
-					System.err.println("El usuario actual no coincide con esperado. Actual: " + strNombreActual
-							+ " esperado: " + username);
+					System.err.println("Actual user doesn't match with expected. Actual: " + strNombreActual
+							+ " expected: " + username);
 					return false;
 				}
 			} catch (Exception err) {
-				System.err.println("Error en validacion " + err.getMessage());
+				System.err.println("Error in validation " + err.getMessage());
 				return false;
 			}
 
 		} catch (Exception e) {
-			System.out.println("Error en createAccount - " + e.getMessage());
+			System.out.println("Error in createAccount - " + e.getMessage());
 			return false;
 		}
 	}
@@ -90,7 +99,7 @@ public class Page_CreateAccount extends PageTemplate {
 			Keywords.clickElement(driver, By.xpath(xpathLnkHaveAccount));
 			return true;
 		} catch (Exception e) {
-			System.out.println("goToHaveAccount - " + e);
+			System.out.println("Error in goToHaveAccount - " + e);
 			return false;
 		}
 	}

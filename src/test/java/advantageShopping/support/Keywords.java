@@ -10,7 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+/**
+ * Copyright: Softtek. Description: In this file contains functional keywords to
+ * use in the scripts
+ * 
+ * @author Juan Carlos Hernández Castro<jc.hernandez>
+ *
+ */
+
 public class Keywords {
+	
 	public static void waitForLoadPage(WebDriver driver, By by) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
@@ -26,6 +35,7 @@ public class Keywords {
 		w.until(ExpectedConditions.presenceOfElementLocated(by));
 
 	}
+
 	public static boolean isElementPresent(WebDriver driver, By by) {
 		try {
 			driver.findElement(by);
