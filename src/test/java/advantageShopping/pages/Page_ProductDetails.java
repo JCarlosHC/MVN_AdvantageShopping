@@ -32,20 +32,20 @@ public class Page_ProductDetails extends PageTemplate {
 		
 	}
 	
-	public boolean getPrize() {
+	public boolean verifiyPrizeVisibility() {
 		Keywords.waitForLoadPage(driver, By.xpath(xpathTxtPrize));
 		Boolean val = Keywords.isElementPresent(driver,By.xpath(xpathTxtPrize));
 		return val;
 	}
 	
-	public boolean getDescription() {
+	public boolean verifiyDescriptionVisibility() {
 		Keywords.waitForLoadPage(driver, By.xpath(xpathTxtDescription));
 		Boolean val = Keywords.isElementPresent(driver,By.xpath(xpathTxtDescription));
 		return val;
 	}
 	
 	
-	public boolean getSpecifications() {
+	public boolean verifiySpecificationsVisibility() {
 		Keywords.waitForLoadPage(driver, By.xpath(xpathProductSpecifications));
 		List<WebElement> specificationsList = Keywords.getListOfElements(driver, By.xpath(xpathProductSpecifications));
 		if(specificationsList.size()>0) 
