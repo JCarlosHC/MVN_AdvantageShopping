@@ -97,7 +97,7 @@ public class TSD_CreateAccount {
 		driverPath = excelData.getValue("driverPath");
 		dataPath = excelData.getValue("dataPath");
 		sheetData = excelData.getValue("sheetDataForAccount");
-//		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 12);
+		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 12);
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		driver = new ChromeDriver();
 	}
