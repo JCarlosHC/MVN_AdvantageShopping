@@ -30,13 +30,12 @@ public class Page_Signin extends PageTemplate {
 
 	// This function is to sign in with username, password and remember option
 	public Boolean signInWithUserPassword(String username, String password, boolean remember) {
-		String xpathSignInResult = "//label[@id='signInResultMessage']";
 		String xpathUserLoggedWelcome = "//span[@class='hi-user containMiniTitle ng-binding']";
 		try {
-			
+
 			Keywords.writeElement(driver, By.xpath(xpathInputUsername), username);
 			Keywords.writeElement(driver, By.xpath(xpathInputPassword), password);
-			if(remember) {
+			if (remember) {
 				Keywords.clickElement(driver, By.xpath(xpathRemember));
 			}
 			Keywords.clickElement(driver, By.xpath(xpathButtonSignin));
@@ -47,7 +46,7 @@ public class Page_Signin extends PageTemplate {
 					System.out.println("User is temporary blocked from login");
 					return false;
 				}
-				
+
 				if (Keywords.verifyTextIsPresent(driver, "Incorrect user name or password.")) {
 					System.out.println("Incorrect user name or password.");
 					return false;
@@ -75,7 +74,25 @@ public class Page_Signin extends PageTemplate {
 			}
 
 		} catch (Exception e) {
-			System.out.println("Error in createAccount - " + e.getMessage());
+			System.out.println("Error in signInWithUserPassword - " + e.getMessage());
+			return false;
+		}
+	}
+
+	// This function is to sign in with facebook
+	public Boolean signInWithFacebook() {
+		try {
+			Keywords.clickElement(driver, By.xpath(xpathSigninFb));
+			if (Keywords.verifyTextIsPresent(driver,
+					"403 FORBIDDEN Sorry, connecting to Facebook is currently unavailable. Please try again later.")) {
+				System.out.println(
+						"403 FORBIDDEN Sorry, connecting to Facebook is currently unavailable. Please try again later.");
+				return true;
+			}
+
+			return true;
+		} catch (Exception e) {
+			System.out.println("Error in signInWithFacebook - " + e.getMessage());
 			return false;
 		}
 	}
@@ -86,6 +103,16 @@ public class Page_Signin extends PageTemplate {
 			return true;
 		} catch (Exception e) {
 			System.out.println("goToCreateAccount - " + e);
+			return false;
+		}
+	}
+
+	public Boolean goToForgotPassword() {
+		try {
+			Keywords.clickElement(driver, By.xpath(xpathLnkForgotPassword));
+			return true;
+		} catch (Exception e) {
+			System.out.println("goToForgotPassword - " + e);
 			return false;
 		}
 	}
