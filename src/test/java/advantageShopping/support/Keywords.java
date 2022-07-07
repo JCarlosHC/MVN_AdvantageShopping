@@ -22,7 +22,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class Keywords {
 	
 	public static void waitForLoadPage(WebDriver driver, By by) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
