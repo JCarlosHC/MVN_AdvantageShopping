@@ -32,16 +32,21 @@ public class Page_ProductDetails extends PageTemplate {
 		
 	}
 	
-	public String getPrize() {
-		return Keywords.getText(driver, By.xpath(xpathTxtPrize));
+	public boolean verifiyPrizeVisibility() {
+		Keywords.waitForLoadPage(driver, By.xpath(xpathTxtPrize));
+		Boolean val = Keywords.isElementPresent(driver,By.xpath(xpathTxtPrize));
+		return val;
 	}
 	
-	public String getDescription() {
-		return Keywords.getText(driver, By.xpath(xpathTxtDescription));
+	public boolean verifiyDescriptionVisibility() {
+		Keywords.waitForLoadPage(driver, By.xpath(xpathTxtDescription));
+		Boolean val = Keywords.isElementPresent(driver,By.xpath(xpathTxtDescription));
+		return val;
 	}
 	
 	
-	public boolean getSpecifications() {
+	public boolean verifiySpecificationsVisibility() {
+		Keywords.waitForLoadPage(driver, By.xpath(xpathProductSpecifications));
 		List<WebElement> specificationsList = Keywords.getListOfElements(driver, By.xpath(xpathProductSpecifications));
 		if(specificationsList.size()>0) 
 			return true;

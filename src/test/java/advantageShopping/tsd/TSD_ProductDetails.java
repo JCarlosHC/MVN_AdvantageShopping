@@ -63,6 +63,30 @@ public class TSD_ProductDetails {
 		}
 	}
 	
+	@Test(description="Verify if the specifications of the product are shown")
+	public void specificationsAreShown() {
+		try {
+			Page_ProductDetails productDetails = new Page_ProductDetails(driver);
+			driver.get(Page_ProductDetails.URL);
+			Boolean valueExpected = true;
+			Boolean actualResult = productDetails.getSpecifications();
+			Assert.assertEquals(actualResult, valueExpected);
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	@Test(description="Verifiy if the prize and descrpition are shown")
+	public void prizeAndDescriptionAreShown() {
+		Page_ProductDetails productDetails = new Page_ProductDetails(driver);
+		driver.get(Page_ProductDetails.URL);
+		Boolean valueExpected = true;
+		Boolean actualResult = productDetails.getPrize();
+		Assert.assertEquals(actualResult, valueExpected);
+		actualResult = productDetails.getDescription();
+		Assert.assertEquals(actualResult, valueExpected);
+	}
+	
 	@BeforeClass
 	public void beforeClass() {
 		// Load test data required
@@ -79,7 +103,7 @@ public class TSD_ProductDetails {
 
 	@AfterClass
 	public void afterClass() {
-		//driver.close();
+		driver.close();
 	}
 	
 }
