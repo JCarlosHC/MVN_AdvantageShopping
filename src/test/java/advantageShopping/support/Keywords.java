@@ -94,4 +94,11 @@ public class Keywords {
 		List<WebElement> elements = driver.findElements(by);
 		return elements;
 	}
+	
+	public static String getTextFromInput(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+		System.out.println("Get text " + element.getText() + " from element " + by.toString());
+		return element.getAttribute("value");
+	}
 }

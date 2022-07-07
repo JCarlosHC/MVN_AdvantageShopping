@@ -8,16 +8,10 @@
 
 package advantageShopping.pages;
 
-import java.util.Dictionary;
-import java.util.Hashtable;
 import java.util.List;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
 import advantageShopping.support.Keywords;
 import advantageShopping.templates.PageTemplate;
 
@@ -30,8 +24,9 @@ public class Page_ProductDetails extends PageTemplate {
 	private String xpathAddToCartButton = "//button[@name='save_to_cart']";
 	private String xpathProductSpecifications ="//article[@class='max-width '][2]//div";
 	private String xpathTitleProductPopUpShoppingCart = "//table//tr//td[2]//h3";
-	
-	
+	private String xpathInputQuantity = "//input[@name='quantity']";
+	public static final String URL = "https://www.advantageonlineshopping.com/#/product/3";
+
 	public Page_ProductDetails(WebDriver driver) {
 		super(driver);	
 		
@@ -48,45 +43,44 @@ public class Page_ProductDetails extends PageTemplate {
 	
 	public boolean getSpecifications() {
 		List<WebElement> specificationsList = Keywords.getListOfElements(driver, By.xpath(xpathProductSpecifications));
-		if(specificationsList.size()>0) return true;
-		else return false;
+		if(specificationsList.size()>0) 
+			return true;
+		else 
+			return false;
 	}
 	
-	public void changeQuantity(int number) {
+	public boolean changeQuantity(String number) {
 		
-		for(int i=1;i<number;i++)
+		for(int i=1;i<Integer.parseInt(number);i++)
 		{
-		Keywords.clickElement(driver, By.xpath("//div[@class='plus']"));
+			Keywords.clickElement(driver, By.xpath("//div[@class='plus']"));
 		}
+		String quantity = Keywords.getTextFromInput(driver, By.xpath(xpathInputQuantity));
+		if(quantity.equals(number))
+			return true; 
+		else
+			return false;
+		//Keywords.writeElement(driver, By.xpath(xpathInputQuantity),number);
 	}
 	
-	public void changeColor(String color) {
+	public boolean changeColor(String color) {
 		String selectedColor = xpathColors + "[@title="+"'"+color.toUpperCase()+"'"+"]";
 		Keywords.clickElement(driver, By.xpath(selectedColor));
+		String isSelectedColor = xpathColors + "[@title="+"'"+color.toUpperCase()+"'"+"and contains(@class,'colorSelected')]"+"";
+		Keywords.waitForLoadPage(driver, By.xpath(isSelectedColor));
+		return Keywords.isElementPresent(driver, By.xpath(isSelectedColor));
 	}
 	
-	public boolean validateColor(String color) {
-		String selectedColor = xpathColors + "[@title="+"'"+color.toUpperCase()+"'"+"and contains(@class,'colorSelected')]"+"";
-		try {
-			driver.findElement(By.xpath(selectedColor));
-			return true;
-		}
-		catch(NoSuchElementException e) {
-			System.out.println(e.toString());
-			return false;
-		}
-		
-	}
 	
-	public void addToCart() {
+	public boolean addToCart() {
 		Keywords.clickElement(driver, By.xpath(xpathAddToCartButton));
-	}
-	
-	public boolean validateProductAdded() {
 		String popUpProductTitle = Keywords.getText(driver, By.xpath(xpathTitleProductPopUpShoppingCart));
 		String productDetailsTitle = Keywords.getText(driver, By.xpath(xpathTxtProductTitle));
-		if(popUpProductTitle.toUpperCase().equals(productDetailsTitle.toUpperCase())) return true;
-		else return false;
+		if(popUpProductTitle.toUpperCase().equals(productDetailsTitle.toUpperCase())) 
+			return true;
+		else
+			return false;
 	}
+	
 
 }
