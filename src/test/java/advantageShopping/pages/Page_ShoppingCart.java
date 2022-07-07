@@ -1,18 +1,7 @@
 package advantageShopping.pages;
 
-import java.awt.RenderingHints.Key;
-import java.util.Iterator;
-import java.util.List;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import advantageShopping.templates.PageTemplate;
 import advantageShopping.support.*;
@@ -61,7 +50,7 @@ public class Page_ShoppingCart extends PageTemplate{
 	 * @product = Name of the product we want to edit (ie: "HP ELITEPAD 1000 G2 TABLET")
 	 */
 	
-	public boolean editCart(String product) {
+	public boolean editItems(String product) {
 		String xpathEditItem = "//label[contains(text(),'"+product+"')]/../..//span/a[contains(text(),'EDIT')]";	
 		String xpathProductMenu = "//a[contains(text(),'"+product+"')]";
 		
