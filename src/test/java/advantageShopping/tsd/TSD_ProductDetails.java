@@ -1,3 +1,10 @@
+/**
+ * Copyright: Softtek. Description: This file contains the test cases of the page 
+ * Product Details
+ * 
+ * @author Angel Francisco Lastra Torres <angel.lastra>
+ *
+ */
 package advantageShopping.tsd;
 
 import java.io.IOException;
@@ -69,7 +76,7 @@ public class TSD_ProductDetails {
 			Page_ProductDetails productDetails = new Page_ProductDetails(driver);
 			driver.get(Page_ProductDetails.URL);
 			Boolean valueExpected = true;
-			Boolean actualResult = productDetails.getSpecifications();
+			Boolean actualResult = productDetails.verifiySpecificationsVisibility();
 			Assert.assertEquals(actualResult, valueExpected);
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
@@ -81,9 +88,9 @@ public class TSD_ProductDetails {
 		Page_ProductDetails productDetails = new Page_ProductDetails(driver);
 		driver.get(Page_ProductDetails.URL);
 		Boolean valueExpected = true;
-		Boolean actualResult = productDetails.getPrize();
+		Boolean actualResult = productDetails.verifiyPrizeVisibility();
 		Assert.assertEquals(actualResult, valueExpected);
-		actualResult = productDetails.getDescription();
+		actualResult = productDetails.verifiyDescriptionVisibility();
 		Assert.assertEquals(actualResult, valueExpected);
 	}
 	
