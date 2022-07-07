@@ -3,6 +3,7 @@ package advantageShopping.support;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -14,14 +15,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  * Copyright: Softtek. Description: In this file contains functional keywords to
  * use in the scripts
  * 
- * @author Juan Carlos Hern·ndez Castro<jc.hernandez>
+ * @author Juan Carlos Hern√°ndez Castro<jc.hernandez>
  *
  */
 
 public class Keywords {
 	
 	public static void waitForLoadPage(WebDriver driver, By by) {
-		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
 
@@ -95,6 +96,12 @@ public class Keywords {
 		return elements;
 	}
 	
+	public static void sendKey(WebDriver driver, By by, Keys key) {
+		WebElement element = driver.findElement(by);
+		element.sendKeys(key);
+		System.out.println("sent key to element " + by.toString() + " - Value: " + key.toString());
+  }
+
 	public static String getTextFromInput(WebDriver driver, By by) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		WebElement element = wait.until(ExpectedConditions.visibilityOfElementLocated(by));
