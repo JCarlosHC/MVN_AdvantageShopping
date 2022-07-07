@@ -1,0 +1,118 @@
+package advantageShopping.tsd;
+
+import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.Date;
+import java.util.Objects;
+
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.DataProvider;
+import org.testng.annotations.Test;
+
+import advantageShopping.pages.Page_Navbar;
+import advantageShopping.pages.Page_ShoppingCart;
+import advantageShopping.support.ExcelPropertyLoader;
+
+public class TSD_ShoppingCart {
+	
+	public String baseUrl = "";
+	String driverPath = "C:\\Academia2206\\libs\\webdrivers\\chromedriver-102.0.5.exe";
+	String excelPath = "C:\\Academia2206\\libs\\advantageShopping_parameters.xlsx";
+	String dataPath = "";
+	String sheetData = "";
+	public WebDriver driver;
+	ExcelPropertyLoader excelData;
+	Object[][] dataProviderObject = null;
+	
+	@DataProvider(name = "excel-data")
+	public Object[][] excelDP() throws IOException {
+		
+		//If excel data is empty we set an object for the test cases
+		if (Objects.equals(null, dataProviderObject)) {
+			return new Object[][] { new Object[] { "headphones", 1}, };
+		}
+		return dataProviderObject;
+	}
+	
+	@Test(dataProvider = "excel-data", description = "edits items in cart")
+	public void editCartItems(String product) {
+		try {
+			Page_Navbar navBar = new Page_Navbar(driver);
+			driver.get(navBar.URL);
+			navBar.goToShoppingCart();
+			
+			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
+			driver.get(Page_ShoppingCart.URL);	
+			boolean valueExpected = true;
+//			Date date = new Date();
+//			Timestamp timestamp = new Timestamp(date.getTime());
+//			product = product + timestamp.getTime();
+			boolean resp = cart.editItems(product);			
+			Assert.assertEquals(resp, valueExpected);
+			
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	@Test(dataProvider = "excel-data", description = "delete items from cart")
+	public void deleteCartItems(String product) {
+		try {
+			Page_Navbar navBar = new Page_Navbar(driver);
+			driver.get(navBar.URL);
+			navBar.goToShoppingCart();
+			
+			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
+			driver.get(Page_ShoppingCart.URL);	
+			boolean valueExpected = true;
+//			Date date = new Date();
+			boolean resp = cart.deleteItems(product);			
+			Assert.assertEquals(resp, valueExpected);		
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	@Test(dataProvider = "excel-data", description = "initiates check out process")
+	public void checkOutItems() {
+		try {
+			Page_Navbar navBar = new Page_Navbar(driver);
+			driver.get(navBar.URL);
+			navBar.goToShoppingCart();
+			
+			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
+			driver.get(Page_ShoppingCart.URL);	
+			boolean valueExpected = true;
+//			Date date = new Date();
+//			Timestamp timestamp = new Timestamp(date.getTime());
+//			String checkout="Checkout"+timestamp.getTime();
+			boolean resp = cart.checkOut();			
+			Assert.assertEquals(resp, valueExpected);		
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+
+	@BeforeClass
+	public void beforeClass() {
+		// Load test data required
+		excelData = new ExcelPropertyLoader();
+		excelData.LoadFile(excelPath);
+		baseUrl = excelData.getValue("baseUrl");
+		driverPath = excelData.getValue("driverPath");
+		dataPath = excelData.getValue("dataPath");
+		sheetData = excelData.getValue("shoppingCartData");
+		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 1);
+		System.setProperty("webdriver.chrome.driver", driverPath);
+		driver = new ChromeDriver();
+	}
+
+	@AfterClass
+	public void afterClass() {
+		driver.close();
+	}
+}
