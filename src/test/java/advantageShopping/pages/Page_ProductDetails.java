@@ -1,3 +1,11 @@
+/**
+ * Copyright: Softtek. Description: In this file contains the page model for
+ * Product Details and required functions.
+ * 
+ * @author Angel Francisco Lastra Torres<angel.lastra>
+ *
+ */
+
 package advantageShopping.pages;
 
 import java.util.Dictionary;
