@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Advantange Shopping Regression Suite - Team 1">
+	<test verbose="2" name="Smoke - Chrome">
+		<classes>
+			<class name="advantageShopping.tsd.TSD_CreateAccount" />
+			<class name="advantageShopping.tsd.TSD_SignIn" />
+		</classes>
+	</test> <!-- Default test -->
+
+</suite> <!-- Default suite -->

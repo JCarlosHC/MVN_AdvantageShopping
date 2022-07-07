@@ -24,6 +24,9 @@ public class Page_Navbar extends PageTemplate {
 	private String xpathLnkSearch = "//div[@id='search']//a";
 //	private String xpathInputSearch = "//input[@id='autoComplete']";
 	private String xpathLnkUser = "//a[@id='menuUserLink']";
+	private String xpathLnkMyAccount = "(//*[contains(text(),'My account')])[2]";
+	private String xpathLnkMyOrders = "(//*[contains(text(),'My orders')])[2]";
+	private String xpathLnkSignOut = "(//*[contains(text(),'Sign out')])[2]";
 	private String xpathLnkShoppingCart = "//a[@id='shoppingCartLink']";
 	private String xpathLnkHelp = "//a[@id='helpLink']";
 	public static final String URL = "https://advantageonlineshopping.com/#/";
@@ -96,6 +99,40 @@ public class Page_Navbar extends PageTemplate {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkUser));
 			return true;
+		} catch (Exception e) {
+			System.out.println("goToProfileUser - " + e);
+			return false;
+		}
+	}
+
+	public Boolean goToMyAccount() {
+		try {
+			Keywords.clickElement(driver, By.xpath(xpathLnkMyAccount));
+			return true;
+		} catch (Exception e) {
+			System.out.println("goToProfileUser - " + e);
+			return false;
+		}
+	}
+
+	public Boolean goToMyOrders() {
+		try {
+			Keywords.clickElement(driver, By.xpath(xpathLnkMyOrders));
+			return true;
+		} catch (Exception e) {
+			System.out.println("goToProfileUser - " + e);
+			return false;
+		}
+	}
+
+	public Boolean signOut() {
+		try {
+			if (goToProfileUser()) {
+				Keywords.clickElement(driver, By.xpath(xpathLnkSignOut));
+				return true;
+			}
+			return false;
+
 		} catch (Exception e) {
 			System.out.println("goToProfileUser - " + e);
 			return false;
