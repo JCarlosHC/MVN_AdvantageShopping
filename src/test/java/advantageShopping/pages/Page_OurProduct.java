@@ -7,7 +7,12 @@ import org.openxmlformats.schemas.drawingml.x2006.main.impl.STPenAlignmentImpl;
 
 import advantageShopping.support.Keywords;
 import advantageShopping.templates.PageTemplate;
-
+/**
+ * Copyright: Softtek. 
+ * Description: Model for the main webpage (OurProducts)
+ * @author David Morales<davidf.morales>
+ *
+ */
 public class Page_OurProduct extends PageTemplate {
 
 	private String xpathProductSpeaker = "//div[@id='speakersImg']";
@@ -63,22 +68,26 @@ public class Page_OurProduct extends PageTemplate {
 	}
 	
 	public void goToTablets() {
-		WebElement tabletItem = driver.findElement(By.xpath(this.xpathProductTablet));
-		tabletItem.click();
+		By tabletsBy = By.xpath(xpathProductTablet);
+		Keywords.isPresenceOfElementLocated(driver, tabletsBy);
+		Keywords.clickElement(this.driver, tabletsBy);
 	}
 	
 	public void goToHeadphones() {
-		WebElement headphoneItem = driver.findElement(By.xpath(this.xpathProductHeadphone));
-		headphoneItem.click();
+		By headphonesBy = By.xpath(this.xpathProductHeadphone);
+		Keywords.isPresenceOfElementLocated(driver, headphonesBy);
+		Keywords.clickElement(this.driver, headphonesBy);
 	}
 	
 	public void goToLaptops() {
-		WebElement laptopItem = driver.findElement(By.xpath(this.xpathProductLaptop));
-		laptopItem.click();
+		By laptopsBy.xpath(this.xpathProductLaptop);
+		Keywords.isPresenceOfElementLocated(driver, laptopsBy);
+		Keywords.clickElement(this.driver, laptopsBy);
 	}
 	
 	public void goToMouse() {
-		WebElement mouseItem = driver.findElement(By.xpath(this.xpathProductMouse));
-		mouseItem.click();
+		By mouseBy = By.xpath(this.xpathProductMouse);
+		Keywords.isPresenceOfElementLocated(driver, mouseBy);
+		Keywords.clickElement(this.driver, mouseBy);
 	}
 }

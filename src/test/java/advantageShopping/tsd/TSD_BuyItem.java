@@ -23,17 +23,16 @@ import advantageShopping.support.ExcelPropertyLoader;
 import advantageShopping.support.Keywords;
 
 /**
- * Copyright: Softtek. Description: In this file contains a basic test case of
- * demosite application especifally how to create an account.
- * 
- * @author Juan Carlos Hernández Castro<jc.hernandez>
+ * Copyright: Softtek. 
+ * Description: Test suit for buying items
+ * @author David Morales<davidf.morales>
  *
  */
 
 public class TSD_BuyItem {
 
 	public String baseUrl = "";
-	String driverPath = "‪C:\\Academia2022_2\\libs\\chromedriver.exe";
+	String driverPath = "C:\\Academia2022_2\\libs\\chromedriver.exe";
 	String excelPath = "C:\\Academia2022_2\\libs\\advantageShoppingData\\advantageShopping_parameters.xlsx";
 	String dataPath = "";
 	String sheetData = "";
@@ -54,10 +53,10 @@ public class TSD_BuyItem {
 
 	
 	
-	@Test(description = "Buying a product test")
+	@Test(description = "Buying speakers test")
 	public void buySpeakerItem() {
 		try {
-			Page_OurProduct page = new Page_OurProduct(driver);// Page_CreateAccount newAccount = new Page_CreateAccount(driver);
+			Page_OurProduct page = new Page_OurProduct(driver);
 			driver.get(Page_OurProduct.URL);
 			if (page.goToSpeakers()) {
 				Assert.assertTrue(true, "ok!");
@@ -69,36 +68,21 @@ public class TSD_BuyItem {
 		}
 	}
 	
-	@Test(description = "buying the special item")
+	@Test(description = "Buying the special item")
 	public void buySpecialItem() {
 		try {
-				Page_OurProduct page = new Page_OurProduct(driver);// Page_CreateAccount newAccount = new Page_CreateAccount(driver);
-			
-				if (page.goToSpecial()) {
-					Assert.assertTrue(true, "ok!");
-					Keywords.waitForLoadPage(driver, null);
-				}else{
-					Assert.fail("ok!");
+			Page_OurProduct page = new Page_OurProduct(driver);
+		
+			if (page.goToSpecial()) {
+				Assert.assertTrue(true, "ok!");
+				Keywords.waitForLoadPage(driver, null);
+			}else{
+				Assert.fail("ok!");
 			}
 			
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
 		}
-	}
-	
-	@Test
-	public void searchProduct() {
-		//try {
-			Page_OurProduct page = new Page_OurProduct(driver);
-			driver.get(Page_OurProduct.URL);
-			page.goToLaptops();
-			Assert.assertTrue(true, "doing great");
-		/*}
-		catch (Exception e) {
-			// TODO: handle exception
-			System.out.println(e.getMessage());
-			Assert.assertTrue(false, e.getMessage());
-		}*/
 	}
 	
 	@BeforeClass
