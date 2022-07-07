@@ -22,7 +22,7 @@ public class Page_Navbar extends PageTemplate {
 	private String xpathLnkPopularItems = "//nav//li[@class='nav-li-Links']//a[text()='POPULAR ITEMS']";
 	private String xpathLnkContactUs = "//nav//li[@class='nav-li-Links']//a[text()='CONTACT US']";
 	private String xpathLnkSearch = "//div[@id='search']//a";
-//	private String xpathInputSearch = "//input[@id='autoComplete']";
+	private String xpathInputSearch = "//input[@id='autoComplete']";
 	private String xpathLnkUser = "//a[@id='menuUserLink']";
 	private String xpathLnkShoppingCart = "//a[@id='shoppingCartLink']";
 	private String xpathLnkHelp = "//a[@id='helpLink']";

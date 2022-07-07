@@ -30,7 +30,7 @@ public class Keywords {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
 		wait.until(ExpectedConditions.textToBePresentInElementLocated(by, text));
 	}
-
+	
 	public static void isPresenceOfElementLocated(WebDriver driver, By by) {
 		WebDriverWait w = new WebDriverWait(driver, 30);
 		w.until(ExpectedConditions.presenceOfElementLocated(by));
