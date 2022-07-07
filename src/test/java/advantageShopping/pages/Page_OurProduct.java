@@ -15,6 +15,7 @@ public class Page_OurProduct extends PageTemplate {
 	private String xpathProductLaptop = "//div[@id='laptopsImg']";
 	private String xpathProductTablet = "//div[@id='tabletsImg']";
 	private String xpathProductMouse = "//div[@id='miceImg']";
+	private String xpathHeading = "//h3[contains(@class, 'Title')]";
 	
 	private String xpathLogoHome = "";
 	private String xpathLnkOurProducts = "";
@@ -26,14 +27,21 @@ public class Page_OurProduct extends PageTemplate {
 	private String xpathLnkShoppingCart = "";
 	private String xpathLnkHelp = "";
 	public static final String URL = "https://advantageonlineshopping.com/#/";
+	
 
 	public Page_OurProduct(WebDriver driver) {
 		super(driver);
+		
+				
 	}
 	
-	public void goToSpeakers() {
-		WebElement speakerItem = driver.findElement(By.xpath(this.xpathProductSpeaker));
-		speakerItem.click();
+	public boolean goToSpeakers() {
+		Keywords.clickElement(this.driver, By.xpath(this.xpathProductSpeaker));
+		By headingBy = By.xpath(this.xpathHeading);
+		Keywords.isPresenceOfElementLocated(driver, headingBy);
+		String text = Keywords.getText(driver, headingBy);
+		System.out.println(text);
+		return text.contains("SPEAKERS");
 	}
 	
 	public void goToTablets() {
