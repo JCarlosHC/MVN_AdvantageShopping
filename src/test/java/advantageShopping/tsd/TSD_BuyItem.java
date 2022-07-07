@@ -20,6 +20,7 @@ import advantageShopping.pages.Page_Navbar;
 import advantageShopping.pages.Page_OurProduct;
 import advantageShopping.pages.Page_Signin;
 import advantageShopping.support.ExcelPropertyLoader;
+import advantageShopping.support.Keywords;
 
 /**
  * Copyright: Softtek. Description: In this file contains a basic test case of
@@ -62,6 +63,22 @@ public class TSD_BuyItem {
 				Assert.assertTrue(true, "ok!");
 			}else{
 				Assert.fail("ok!");
+			}
+		} catch (Exception e) {
+			Assert.fail(e.getMessage());
+		}
+	}
+	
+	@Test(description = "buying the special item")
+	public void buySpecialItem() {
+		try {
+				Page_OurProduct page = new Page_OurProduct(driver);// Page_CreateAccount newAccount = new Page_CreateAccount(driver);
+			
+				if (page.goToSpecial()) {
+					Assert.assertTrue(true, "ok!");
+					Keywords.waitForLoadPage(driver, null);
+				}else{
+					Assert.fail("ok!");
 			}
 			
 		} catch (Exception e) {

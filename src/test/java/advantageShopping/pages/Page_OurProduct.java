@@ -15,6 +15,11 @@ public class Page_OurProduct extends PageTemplate {
 	private String xpathProductLaptop = "//div[@id='laptopsImg']";
 	private String xpathProductTablet = "//div[@id='tabletsImg']";
 	private String xpathProductMouse = "//div[@id='miceImg']";
+	
+	private String xpathSeeOffer = "//button[@id='see_offer_btn']";
+	
+	
+	
 	private String xpathHeading = "//h3[contains(@class, 'Title')]";
 	
 	private String xpathLogoHome = "";
@@ -42,6 +47,19 @@ public class Page_OurProduct extends PageTemplate {
 		String text = Keywords.getText(driver, headingBy);
 		System.out.println(text);
 		return text.contains("SPEAKERS");
+	}
+	
+	public boolean goToSpecial() {
+		Page_Navbar navbar = new Page_Navbar(driver);
+		driver.get(Page_OurProduct.URL);
+		navbar.goToSpecialOffer();
+		
+		By seeOfferBy = By.xpath(xpathSeeOffer);
+		
+		Keywords.isPresenceOfElementLocated(driver, seeOfferBy);
+		Keywords.clickElement(this.driver, seeOfferBy);
+		
+		return true;
 	}
 	
 	public void goToTablets() {
