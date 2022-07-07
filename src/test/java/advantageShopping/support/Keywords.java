@@ -94,4 +94,10 @@ public class Keywords {
 		List<WebElement> elements = driver.findElements(by);
 		return elements;
 	}
+	
+	public static void sendKey(WebDriver driver, By by, Keys key) {
+		WebElement element = driver.findElement(by);
+		element.sendKeys(key);
+		System.out.println("sent key to element " + by.toString() + " - Value: " + key.toString());
+	}
 }
