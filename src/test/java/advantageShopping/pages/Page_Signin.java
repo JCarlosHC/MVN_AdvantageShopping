@@ -36,8 +36,10 @@ public class Page_Signin extends PageTemplate {
 			Keywords.writeElement(driver, By.xpath(xpathInputUsername), username);
 			Keywords.writeElement(driver, By.xpath(xpathInputPassword), password);
 			if (remember) {
+				Keywords.waitForLoadPage(driver, By.xpath(xpathRemember));
 				Keywords.clickElement(driver, By.xpath(xpathRemember));
 			}
+			Keywords.waitForLoadPage(driver, By.xpath(xpathButtonSignin));
 			Keywords.clickElement(driver, By.xpath(xpathButtonSignin));
 
 			try {
