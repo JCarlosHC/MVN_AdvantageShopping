@@ -68,6 +68,9 @@ public class TSD_SignIn {
 			Page_Signin signin = new Page_Signin(driver);
 			Boolean valueExpected = true;
 			Boolean resp = signin.signInWithUserPassword(username, password, false);
+			if(resp) {
+				navbar.signOut();
+			}
 			Assert.assertEquals(resp, valueExpected);
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
