@@ -178,9 +178,11 @@ public class Page_Navbar extends PageTemplate {
 	}
 
 	public Boolean signOut() {
+		String xpathUserLoggedWelcome = "//span[@class='hi-user containMiniTitle ng-binding ng-hide']";
 		try {
 			if (goToProfileUser()) {
 				Keywords.clickElement(driver, By.xpath(xpathLnkSignOut));
+				Keywords.isPresenceOfElementLocated(driver, By.xpath(xpathUserLoggedWelcome));
 				return true;
 			}
 			return false;

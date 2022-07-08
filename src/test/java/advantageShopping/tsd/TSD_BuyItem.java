@@ -1,10 +1,6 @@
 package advantageShopping.tsd;
 
-import static org.testng.Assert.assertEquals;
-
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.util.Date;
 import java.util.Objects;
 
 import org.openqa.selenium.By;
@@ -16,7 +12,6 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import advantageShopping.pages.Page_CreateAccount;
 import advantageShopping.pages.Page_Navbar;
 import advantageShopping.pages.Page_OurProduct;
 import advantageShopping.pages.Page_ProductDetails;
@@ -59,7 +54,6 @@ public class TSD_BuyItem {
 			Page_OurProduct page = new Page_OurProduct(driver);
 			Page_ProductDetails productDetails = new Page_ProductDetails(driver);
 			Page_ShoppingCart shoppingCart = new Page_ShoppingCart(driver);
-			Page_Signin sign = new Page_Signin(driver);
 			Page_Navbar navbar = new Page_Navbar(driver);
 			driver.get(Page_Navbar.URL);
 			navbar.goToProfileUser();
@@ -89,6 +83,9 @@ public class TSD_BuyItem {
 			Assert.assertEquals(actualResult, valueExpected);
 			navbar.goToShoppingCart();
 			actualResult = shoppingCart.checkOut();
+			if(actualResult) {
+				navbar.signOut();
+			}
 			Assert.assertEquals(actualResult, valueExpected);
 			
 		} catch (Exception e) {
