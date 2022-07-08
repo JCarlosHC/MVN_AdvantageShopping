@@ -44,11 +44,9 @@ public class TSD_Order {
 			navBar.goToShoppingCart();
 			
 			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
-			driver.get(Page_ShoppingCart.URL);	
 			cart.checkOut();	
 			
 			Page_Order order = new Page_Order(driver);
-			driver.get(order.URL);
 			boolean valueExpected = true;
 			boolean resp = order.fillShippingDetails(firstName, lastName, phoneNumber, address, city, postalCode, state);
 			

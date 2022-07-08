@@ -28,35 +28,34 @@ public class Page_Order extends PageTemplate {
 	 */
 	public boolean fillShippingDetails(String firstName, String lastName, String phoneNumber, String address, String city, String postalCode, String state) {
 		
-		Keywords.clickElement(driver, By.name("first_name"));
-		Keywords.clearElement(driver, By.className("first_name"));
-		Keywords.writeElement(driver, By.className("first_name"), firstName);
-		
-		Keywords.clickElement(driver, By.name("last_name"));
-		Keywords.clearElement(driver, By.className("last_name"));
-		Keywords.writeElement(driver, By.className("last_name"), lastName);
-		
-		Keywords.clickElement(driver, By.name("phone_number"));
-		Keywords.clearElement(driver, By.className("phone_number"));
-		Keywords.writeElement(driver, By.className("phone_number"), phoneNumber);
-		
-		Keywords.clickElement(driver, By.name("address"));
-		Keywords.clearElement(driver, By.className("address"));
-		Keywords.writeElement(driver, By.className("address"), address);
-		
-		Keywords.clickElement(driver, By.name("city"));
-		Keywords.clearElement(driver, By.className("city"));
-		Keywords.writeElement(driver, By.className("city"), city);
-		
-		Keywords.clickElement(driver, By.name("postal_code"));
-		Keywords.clearElement(driver, By.className("postal_code"));
-		Keywords.writeElement(driver, By.className("postal_code"), postalCode);		
-		
-		Keywords.clickElement(driver, By.name("state_/_province_/_region"));
-		Keywords.clearElement(driver, By.className("state_/_province_/_region"));
-		Keywords.writeElement(driver, By.className("state_/_province_/_region"), state);
-		
 		try {
+			Keywords.clickElement(driver, By.name("first_name"));
+			Keywords.clearElement(driver, By.name("first_name"));
+			Keywords.writeElement(driver, By.name("first_name"), firstName);
+		
+			Keywords.clickElement(driver, By.name("last_name"));
+			Keywords.clearElement(driver, By.name("last_name"));
+			Keywords.writeElement(driver, By.name("last_name"), lastName);
+		
+			Keywords.clickElement(driver, By.name("phone_number"));
+			Keywords.clearElement(driver, By.name("phone_number"));
+			Keywords.writeElement(driver, By.name("phone_number"), phoneNumber);
+		
+			Keywords.clickElement(driver, By.name("address"));
+			Keywords.clearElement(driver, By.name("address"));
+			Keywords.writeElement(driver, By.name("address"), address);
+		
+			Keywords.clickElement(driver, By.name("city"));
+			Keywords.clearElement(driver, By.name("city"));
+			Keywords.writeElement(driver, By.name("city"), city);
+		
+			Keywords.clickElement(driver, By.name("postal_code"));
+			Keywords.clearElement(driver, By.name("postal_code"));
+			Keywords.writeElement(driver, By.name("postal_code"), postalCode);		
+		
+			Keywords.clickElement(driver, By.name("state_/_province_/_region"));
+			Keywords.clearElement(driver, By.name("state_/_province_/_region"));
+			Keywords.writeElement(driver, By.name("state_/_province_/_region"), state);
 			Keywords.clickElement(driver, By.name("next_btnundefined"));
 			return true;
 		} catch (Exception e) {

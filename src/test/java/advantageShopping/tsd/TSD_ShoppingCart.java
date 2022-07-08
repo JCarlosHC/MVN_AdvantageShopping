@@ -33,7 +33,7 @@ public class TSD_ShoppingCart {
 		
 		//If excel data is empty we set an object for the test cases
 		if (Objects.equals(null, dataProviderObject)) {
-			return new Object[][] { new Object[] { "headphones", 1}, };
+			return new Object[][] { new Object[] { "headphones","HP ELITE X2 1011 G1 TABLET"}, };
 		}
 		return dataProviderObject;
 	}
@@ -41,6 +41,8 @@ public class TSD_ShoppingCart {
 	@Test(dataProvider = "excel-data", description = "edits items in cart", priority = 1)
 	public void editCartItems(String product) {
 		try {
+			
+			
 			Page_Navbar navBar = new Page_Navbar(driver);
 			driver.get(navBar.URL);
 			navBar.goToShoppingCart();
@@ -67,7 +69,6 @@ public class TSD_ShoppingCart {
 			navBar.goToShoppingCart();
 			
 			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
-			driver.get(Page_ShoppingCart.URL);	
 			boolean valueExpected = true;
 //			Date date = new Date();
 			boolean resp = cart.deleteItems(product);			
@@ -81,7 +82,6 @@ public class TSD_ShoppingCart {
 	public void checkOutItems() {
 		try {
 			Page_Navbar navBar = new Page_Navbar(driver);
-			driver.get(navBar.URL);
 			navBar.goToShoppingCart();
 			
 			Page_ShoppingCart cart = new Page_ShoppingCart(driver);
