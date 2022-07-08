@@ -84,6 +84,9 @@ public class TSD_CreateAccount {
 			username = username + timestamp.getTime();
 			Boolean resp = newAccount.createAccount(username.subSequence(0, 14).toString(), email, password, confirmPassword, firstName, lastName,
 					phoneNumber, country, city, address, state, postalCode);
+			if(resp) {
+				navbar.signOut();
+			}
 			Assert.assertEquals(resp, valueExpected);
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
