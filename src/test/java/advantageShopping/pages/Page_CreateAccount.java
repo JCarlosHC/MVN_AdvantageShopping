@@ -44,7 +44,7 @@ public class Page_CreateAccount extends PageTemplate {
 
 		try {
 
-			Keywords.checkUrl(driver, URL);
+//			Keywords.checkUrl(driver, URL);
 			Keywords.waitForLoadPage(driver, By.xpath(xpathUsername));
 			Keywords.writeElement(driver, By.xpath(xpathUsername), username);
 			Keywords.writeElement(driver, By.xpath(xpathEmail), email);
