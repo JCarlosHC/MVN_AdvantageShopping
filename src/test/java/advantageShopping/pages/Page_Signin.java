@@ -103,6 +103,9 @@ public class Page_Signin extends PageTemplate {
 
 	public Boolean goToCreateAccount() {
 		try {
+			Keywords.waitForLoadPage(driver, By.xpath("//div[@class='closeBtn loginPopUpCloseBtn']"));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathLnkCreateAccount));
+			Keywords.isPresenceOfElementLocated(driver, By.xpath(xpathLnkCreateAccount));
 			Keywords.clickElement(driver, By.xpath(xpathLnkCreateAccount));
 			return true;
 		} catch (Exception e) {

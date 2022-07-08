@@ -20,10 +20,15 @@ import org.openqa.selenium.support.ui.WebDriverWait;
  */
 
 public class Keywords {
-	
+
 	public static void waitForLoadPage(WebDriver driver, By by) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
+	}
+
+	public static void checkUrl(WebDriver driver, String url) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.urlToBe(url));
 	}
 
 	public static void checkTextInElement(WebDriver driver, By by, String text) {
@@ -95,12 +100,12 @@ public class Keywords {
 		List<WebElement> elements = driver.findElements(by);
 		return elements;
 	}
-	
+
 	public static void sendKey(WebDriver driver, By by, Keys key) {
 		WebElement element = driver.findElement(by);
 		element.sendKeys(key);
 		System.out.println("sent key to element " + by.toString() + " - Value: " + key.toString());
-  }
+	}
 
 	public static String getTextFromInput(WebDriver driver, By by) {
 		WebDriverWait wait = new WebDriverWait(driver, 10);
