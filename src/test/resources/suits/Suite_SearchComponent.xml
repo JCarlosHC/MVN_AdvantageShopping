@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite guice-stage="DEVELOPMENT" name="Advantange Shopping Suite - Search component">
+	<test verbose="2" name="Search - Chrome">
+		<classes>
+			<class name="advantageShopping.tsd.TSD_SearchByCategory" />
+			<class name="advantageShopping.tsd.TSD_SearchByName" />
+			<class name="advantageShopping.tsd.TSD_FilterResultsSearch" />
+		</classes>
+	</test> <!-- Default test -->
+
+</suite> <!-- Default suite -->
