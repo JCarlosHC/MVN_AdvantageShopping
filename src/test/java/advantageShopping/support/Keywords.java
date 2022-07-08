@@ -70,6 +70,13 @@ public class Keywords {
 		element.click();
 		System.out.println("Click on " + by.toString());
 	}
+	
+	public static void enterElement(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, 10);
+		WebElement element = wait.until(ExpectedConditions.elementToBeClickable(by));
+		element.sendKeys(Keys.RETURN);
+		System.out.println("Enter on " + by.toString());
+	}
 
 	public static void clearElement(WebDriver driver, By by) {
 		WebElement element = driver.findElement(by);

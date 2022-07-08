@@ -23,6 +23,9 @@ public class Page_Navbar extends PageTemplate {
 	private String xpathLnkContactUs = "//nav//li[@class='nav-li-Links']//a[text()='CONTACT US']";
 	private String xpathLnkSearch = "//div[@id='search']//a";
 	private String xpathInputSearch = "//input[@id='autoComplete']";
+	private String xpathPopupSearch = "//div[@id='output']";
+	private String xpathCloseSearch = "//div[@data-ng-click='closeSearchForce()']";
+	private String xpathTitleResults = "//h3[@id='searchResultLabel']";
 	private String xpathLnkUser = "//a[@id='menuUserLink']";
 	private String xpathLnkMyAccount = "(//*[contains(text(),'My account')])[2]";
 	private String xpathLnkMyOrders = "(//*[contains(text(),'My orders')])[2]";
@@ -91,6 +94,55 @@ public class Page_Navbar extends PageTemplate {
 			return true;
 		} catch (Exception e) {
 			System.out.println("goToSearch - " + e);
+			return false;
+		}
+	}
+
+	// This method click on search and find an item by name (ex 'HP ROAR MINI
+	// WIRELESS SPEAKER')
+	public Boolean goToSearchAndSearchByName(String nameItem) {
+		try {
+			Keywords.waitForLoadPage(driver, By.xpath(xpathLnkSearch));
+			Keywords.clickElement(driver, By.xpath(xpathLnkSearch));
+			Keywords.isPresenceOfElementLocated(driver,
+					By.xpath("//div[@class='autoCompleteCover' and contains(@style,'opacity: 1')]"));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathInputSearch));
+			Keywords.writeElement(driver, By.xpath(xpathInputSearch), nameItem);
+			Keywords.waitForLoadPage(driver, By.xpath(xpathPopupSearch));
+			Keywords.enterElement(driver, By.xpath(xpathInputSearch));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathTitleResults));
+			Keywords.isElementPresent(driver, By.xpath(xpathTitleResults));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathCloseSearch));
+			Keywords.clickElement(driver, By.xpath(xpathCloseSearch));
+			Keywords.isPresenceOfElementLocated(driver,
+					By.xpath("//div[@class='autoCompleteCover' and contains(@style,'opacity: 0.5')]"));
+			return true;
+		} catch (Exception e) {
+			System.out.println("goToSearchAndSearchByName - " + e);
+			return false;
+		}
+	}
+
+	// This method click on search and find an item by category (ex 'laptops')
+	public Boolean goToSearchAndSearchByCategory(String categoryName) {
+		String xpathCategoryName = "//label[contains(text(),'" + categoryName + "')]/ancestor::a[@class='ng-scope']";
+		try {
+			Keywords.waitForLoadPage(driver, By.xpath(xpathLnkSearch));
+			Keywords.clickElement(driver, By.xpath(xpathLnkSearch));
+			Keywords.isPresenceOfElementLocated(driver,
+					By.xpath("//div[@class='autoCompleteCover' and contains(@style,'opacity: 1')]"));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathInputSearch));
+			Keywords.writeElement(driver, By.xpath(xpathInputSearch), categoryName);
+			Keywords.waitForLoadPage(driver, By.xpath(xpathPopupSearch));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathCategoryName));
+			Keywords.clickElement(driver, By.xpath(xpathCategoryName));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathCloseSearch));
+			Keywords.clickElement(driver, By.xpath(xpathCloseSearch));
+			Keywords.isPresenceOfElementLocated(driver,
+					By.xpath("//div[@class='autoCompleteCover' and contains(@style,'opacity: 0.5')]"));
+			return true;
+		} catch (Exception e) {
+			System.out.println("goToSearchAndSearchByCategory - " + e);
 			return false;
 		}
 	}
