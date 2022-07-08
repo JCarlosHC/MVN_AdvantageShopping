@@ -21,7 +21,7 @@ public class Page_ProductDetails extends PageTemplate {
 	private String xpathTxtPrize = "//div[@id='Description']//h2[contains(text(),'$')][1]";
 	private String xpathTxtDescription = "//div[@id='Description']//p";
 	private String xpathColors = "//div[@id='productProperties']//div[@class='']//span";
-	private String xpathAddToCartButton = "//button[@name='save_to_cart']";
+	public static String xpathAddToCartButton = "//button[@name='save_to_cart']";
 	private String xpathProductSpecifications ="//article[@class='max-width '][2]//div";
 	private String xpathTitleProductPopUpShoppingCart = "//table//tr//td[2]//h3";
 	private String xpathInputQuantity = "//input[@name='quantity']";

@@ -7,6 +7,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 import java.util.Objects;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
@@ -18,6 +19,8 @@ import org.testng.annotations.Test;
 import advantageShopping.pages.Page_CreateAccount;
 import advantageShopping.pages.Page_Navbar;
 import advantageShopping.pages.Page_OurProduct;
+import advantageShopping.pages.Page_ProductDetails;
+import advantageShopping.pages.Page_ShoppingCart;
 import advantageShopping.pages.Page_Signin;
 import advantageShopping.support.ExcelPropertyLoader;
 import advantageShopping.support.Keywords;
@@ -72,13 +75,31 @@ public class TSD_BuyItem {
 	public void buySpecialItem() {
 		try {
 			Page_OurProduct page = new Page_OurProduct(driver);
-		
-			if (page.goToSpecial()) {
+			Page_ProductDetails productDetails = new Page_ProductDetails(driver);
+			Page_ShoppingCart shoppingCart = new Page_ShoppingCart(driver);
+			Page_Signin sign = new Page_Signin(driver);
+			sign.goToCreateAccount();
+			sign.signInWithUserPassword("demo123A","Demo123A",true);
+			if (page.goToSpecial()) {				
+				Keywords.waitForLoadPage(driver, By.xpath(Page_ProductDetails.xpathAddToCartButton));
 				Assert.assertTrue(true, "ok!");
-				Keywords.waitForLoadPage(driver, null);
+				
 			}else{
 				Assert.fail("ok!");
 			}
+			
+			//Product details
+			Boolean valueExpected = true;
+			Boolean actualResult = productDetails.changeColor("YELLOW");
+			Assert.assertEquals(actualResult, valueExpected);
+			actualResult =  productDetails.changeQuantity("6");
+			Assert.assertEquals(actualResult, valueExpected);
+			actualResult = productDetails.addToCart();
+			Assert.assertEquals(actualResult, valueExpected);
+			//Shopping cart
+			driver.get(Page_ShoppingCart.URL);
+			actualResult = shoppingCart.checkOut();
+			Assert.assertEquals(actualResult, valueExpected);
 			
 		} catch (Exception e) {
 			Assert.fail(e.getMessage());
