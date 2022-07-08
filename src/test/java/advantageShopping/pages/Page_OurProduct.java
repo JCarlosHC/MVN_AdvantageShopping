@@ -48,20 +48,17 @@ public class Page_OurProduct extends PageTemplate {
 	public boolean goToSpeakers() {
 		Keywords.clickElement(this.driver, By.xpath(this.xpathProductSpeaker));
 		By headingBy = By.xpath(this.xpathHeading);
-		Keywords.isPresenceOfElementLocated(driver, headingBy);
+		Keywords.isElementPresent(driver, headingBy);
 		String text = Keywords.getText(driver, headingBy);
 		System.out.println(text);
 		return text.contains("SPEAKERS");
 	}
 	
 	public boolean goToSpecial() {
-		Page_Navbar navbar = new Page_Navbar(driver);
-		driver.get(Page_OurProduct.URL);
-		navbar.goToSpecialOffer();
-		
+		//Page_Navbar navbar = new Page_Navbar(driver);
+		//navbar.goToSpecialOffer();
 		By seeOfferBy = By.xpath(xpathSeeOffer);
-		
-		Keywords.isPresenceOfElementLocated(driver, seeOfferBy);
+		Keywords.isElementPresent(driver, seeOfferBy);
 		Keywords.clickElement(this.driver, seeOfferBy);
 		
 		return true;
