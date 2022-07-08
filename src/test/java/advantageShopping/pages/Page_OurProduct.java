@@ -80,7 +80,7 @@ public class Page_OurProduct extends PageTemplate {
 	}
 	
 	public void goToLaptops() {
-		By laptopsBy.xpath(this.xpathProductLaptop);
+		By laptopsBy = By.xpath(this.xpathProductLaptop);
 		Keywords.isPresenceOfElementLocated(driver, laptopsBy);
 		Keywords.clickElement(this.driver, laptopsBy);
 	}
