@@ -68,6 +68,8 @@ public class Page_ShoppingCart extends PageTemplate{
 	public boolean checkOut() {
 		try {
 			System.out.println("checking out...");
+			Keywords.isPresenceOfElementLocated(driver,By.xpath("//tool-tip-cart[contains(@style,'display: none')]"));
+			Keywords.waitForLoadPage(driver,By.id("checkOutButton"));
 			Keywords.clickElement(driver, By.id("checkOutButton"));
 			Keywords.waitForLoadPage(driver, By.xpath(xpathOrderMenu));
 			return Keywords.isElementPresent(driver, By.xpath(xpathOrderMenu));
