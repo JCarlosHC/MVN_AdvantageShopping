@@ -51,11 +51,13 @@ public class Page_ShoppingCart extends PageTemplate{
 	 */
 	
 	public boolean editItems(String product) {
+		
 		String xpathEditItem = "//label[contains(text(),'"+product+"')]/../..//span/a[contains(text(),'EDIT')]";	
 		String xpathProductMenu = "//a[contains(text(),'"+product+"')]";
 		
 		Keywords.clickElement(driver, By.xpath(xpathEditItem));
-		
+		Keywords.waitForLoadPage(driver, By.xpath(xpathProductMenu));
+				
 		return Keywords.isElementPresent(driver, By.xpath(xpathProductMenu));
 	}
 	
@@ -64,6 +66,8 @@ public class Page_ShoppingCart extends PageTemplate{
 	 */
 	public boolean checkOut() {
 		Keywords.clickElement(driver, By.id("checkOutButton"));
+		Keywords.waitForLoadPage(driver, By.xpath(xpathOrderMenu));
+		
 		return Keywords.isElementPresent(driver, By.xpath(xpathOrderMenu));
 	}
 	
