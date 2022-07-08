@@ -142,6 +142,8 @@ public class Page_Navbar extends PageTemplate {
 	public Boolean goToShoppingCart() {
 		try {
 			Keywords.clickElement(driver, By.xpath(xpathLnkShoppingCart));
+			By shoppingTitleBy = By.xpath(Page_ShoppingCart.xpathPageHeading);
+			Keywords.waitForElement(driver, shoppingTitleBy);
 			return true;
 		} catch (Exception e) {
 			System.out.println("goToShoppingCart - " + e);

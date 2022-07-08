@@ -35,8 +35,8 @@ import advantageShopping.support.Keywords;
 public class TSD_BuyItem {
 
 	public String baseUrl = "";
-	String driverPath = "C:\\Academia2022_2\\libs\\chromedriver.exe";
-	String excelPath = "C:\\Academia2022_2\\libs\\advantageShoppingData\\advantageShopping_parameters.xlsx";
+	String driverPath = "C:\\Academia2206\\libs\\webdrivers\\chromedriver-102.0.5.exe";
+	String excelPath = "C:\\Academia2206\\libs\\advantageShopping_parameters.xlsx";
 	String dataPath = "";
 	String sheetData = "";
 	public WebDriver driver;
@@ -45,41 +45,33 @@ public class TSD_BuyItem {
 
 	@DataProvider(name = "excel-data")
 	public Object[][] excelDP() throws IOException {
-		
-		//If excel data is empty we set an object for the test cases
+
+		// If excel data is empty we set an object for the test cases
 		if (Objects.equals(null, dataProviderObject)) {
-			return new Object[][] { new Object[] { "jc", "carlos@test.com", "demo123A", "demo123A", "Test",
-					"Test", "12345678", "MX", "CDMX", "Street SN", "Iztacalco", "11000" }, };
+			return new Object[][] { new Object[] { "demo123A", "Demo123A" }, };
 		}
 		return dataProviderObject;
 	}
 
-	
-	
-	@Test(description = "Buying speakers test")
-	public void buySpeakerItem() {
-		try {
-			Page_OurProduct page = new Page_OurProduct(driver);
-			driver.get(Page_OurProduct.URL);
-			if (page.goToSpeakers()) {
-				Assert.assertTrue(true, "ok!");
-			}else{
-				Assert.fail("ok!");
-			}
-		} catch (Exception e) {
-			Assert.fail(e.getMessage());
-		}
-	}
-	
-	@Test(description = "Buying the special item")
-	public void buySpecialItem() {
+	@Test(dataProvider = "excel-data", description = "Buying the special item")
+	public void buySpecialItem(String username, String password) {
 		try {
 			Page_OurProduct page = new Page_OurProduct(driver);
 			Page_ProductDetails productDetails = new Page_ProductDetails(driver);
 			Page_ShoppingCart shoppingCart = new Page_ShoppingCart(driver);
 			Page_Signin sign = new Page_Signin(driver);
-			sign.goToCreateAccount();
-			sign.signInWithUserPassword("demo123A","Demo123A",true);
+			Page_Navbar navbar = new Page_Navbar(driver);
+			driver.get(Page_Navbar.URL);
+			navbar.goToProfileUser();
+			Page_Signin signin = new Page_Signin(driver);
+			Boolean valueExpected = true;
+			Boolean signedinOK = signin.signInWithUserPassword(username, password, false);
+			if(signedinOK) {
+				Assert.assertEquals(signedinOK, valueExpected);
+			}else {
+				Assert.fail("Could not sign in");
+			}
+			
 			if (page.goToSpecial()) {				
 				Keywords.waitForLoadPage(driver, By.xpath(Page_ProductDetails.xpathAddToCartButton));
 				Assert.assertTrue(true, "ok!");
@@ -89,15 +81,13 @@ public class TSD_BuyItem {
 			}
 			
 			//Product details
-			Boolean valueExpected = true;
 			Boolean actualResult = productDetails.changeColor("YELLOW");
 			Assert.assertEquals(actualResult, valueExpected);
 			actualResult =  productDetails.changeQuantity("6");
 			Assert.assertEquals(actualResult, valueExpected);
 			actualResult = productDetails.addToCart();
 			Assert.assertEquals(actualResult, valueExpected);
-			//Shopping cart
-			driver.get(Page_ShoppingCart.URL);
+			navbar.goToShoppingCart();
 			actualResult = shoppingCart.checkOut();
 			Assert.assertEquals(actualResult, valueExpected);
 			
@@ -105,19 +95,17 @@ public class TSD_BuyItem {
 			Assert.fail(e.getMessage());
 		}
 	}
-	
+
 	@BeforeClass
 	public void beforeClass() {
 		// Load test data required
 		excelData = new ExcelPropertyLoader();
 		excelData.LoadFile(excelPath);
-		System.out.println(excelPath);
-		System.out.println(excelData==null);
 		baseUrl = excelData.getValue("baseUrl");
 		driverPath = excelData.getValue("driverPath");
 		dataPath = excelData.getValue("dataPath");
-		sheetData = excelData.getValue("sheetDataForAccount");
-		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 12);
+		sheetData = excelData.getValue("sheetDataForSignin");
+		dataProviderObject = excelData.getExcelData(dataPath, sheetData, 2);
 		System.setProperty("webdriver.chrome.driver", driverPath);
 		driver = new ChromeDriver();
 	}

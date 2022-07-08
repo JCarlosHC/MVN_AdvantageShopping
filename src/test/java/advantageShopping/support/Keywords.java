@@ -25,6 +25,11 @@ public class Keywords {
 		WebDriverWait wait = new WebDriverWait(driver, 30);
 		wait.until(ExpectedConditions.elementToBeClickable(by));
 	}
+	
+	public static void waitForElement(WebDriver driver, By by) {
+		WebDriverWait wait = new WebDriverWait(driver, 30);
+		wait.until(ExpectedConditions.presenceOfElementLocated(by));
+	}
 
 	public static void checkUrl(WebDriver driver, String url) {
 		WebDriverWait wait = new WebDriverWait(driver, 30);

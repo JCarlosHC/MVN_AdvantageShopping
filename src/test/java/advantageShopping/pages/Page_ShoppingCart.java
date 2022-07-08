@@ -18,7 +18,8 @@ public class Page_ShoppingCart extends PageTemplate{
 	
 	String xpathProductColors = "//span[@id='rabbit']";
 	String xpathItemsOnCart= "//label[contains(@class,'productName')]";
-	String xpathOrderMenu = "//a[contains(text(),'ORDER PAYMENT')]";
+	String xpathOrderMenu = "//h3[contains(.,'ORDER PAYMENT')]";
+	public static final String xpathPageHeading = "//h3[contains(.,'SHOPPING CART')]";
 	public static final String URL = "https://advantageonlineshopping.com/#/shoppingCart";
 
 	public Page_ShoppingCart(WebDriver driver) {
@@ -65,10 +66,15 @@ public class Page_ShoppingCart extends PageTemplate{
 	 * clicks on checkout button in cart page
 	 */
 	public boolean checkOut() {
-		Keywords.clickElement(driver, By.id("checkOutButton"));
-		Keywords.waitForLoadPage(driver, By.xpath(xpathOrderMenu));
-		
-		return Keywords.isElementPresent(driver, By.xpath(xpathOrderMenu));
+		try {
+			System.out.println("checking out...");
+			Keywords.clickElement(driver, By.id("checkOutButton"));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathOrderMenu));
+			return Keywords.isElementPresent(driver, By.xpath(xpathOrderMenu));
+		}catch(Exception e) {
+			System.out.println("Shopping cart - checking out - "+e.getMessage());
+			return false;
+		}
 	}
 	
 	
