@@ -37,13 +37,15 @@ public class Page_CreateAccount extends PageTemplate {
 		super(driver);
 	}
 
-	//This function create a new account and validate the results
+	// This function create a new account and validate the results
 	public Boolean createAccount(String username, String email, String password, String confirmPassword,
 			String firstName, String lastName, String phoneNumber, String country, String city, String address,
 			String state, String postalCode) {
 
 		try {
 
+			Keywords.checkUrl(driver, URL);
+			Keywords.waitForLoadPage(driver, By.xpath(xpathUsername));
 			Keywords.writeElement(driver, By.xpath(xpathUsername), username);
 			Keywords.writeElement(driver, By.xpath(xpathEmail), email);
 			Keywords.writeElement(driver, By.xpath(xpathPassword), password);

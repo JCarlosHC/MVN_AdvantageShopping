@@ -19,7 +19,7 @@ public class Page_Signin extends PageTemplate {
 	private String xpathSigninFb = "//span[text()='SIGN IN WITH FACEBOOK']";
 	private String xpathInputUsername = "//input[@name='username']";
 	private String xpathInputPassword = "//input[@name='password']";
-	private String xpathRemember = "//input[@name='remember_me']";
+	private String xpathRemember = "//span[@translate='REMEMBER_ME']";//span is clicking instead of input
 	private String xpathButtonSignin = "//button[@id='sign_in_btnundefined']";
 	private String xpathLnkForgotPassword = "//a[@translate='FORGOT_PASSWORD']";
 	private String xpathLnkCreateAccount = "//a[text()='CREATE NEW ACCOUNT']";
@@ -32,6 +32,7 @@ public class Page_Signin extends PageTemplate {
 	public Boolean signInWithUserPassword(String username, String password, boolean remember) {
 		String xpathUserLoggedWelcome = "//span[@class='hi-user containMiniTitle ng-binding']";
 		try {
+			Keywords.waitForLoadPage(driver, By.xpath("//div[@class='closeBtn loginPopUpCloseBtn']"));
 			Keywords.waitForLoadPage(driver, By.xpath(xpathInputUsername));
 			Keywords.writeElement(driver, By.xpath(xpathInputUsername), username);
 			Keywords.waitForLoadPage(driver, By.xpath(xpathInputPassword));
@@ -102,6 +103,9 @@ public class Page_Signin extends PageTemplate {
 
 	public Boolean goToCreateAccount() {
 		try {
+			Keywords.waitForLoadPage(driver, By.xpath("//div[@class='closeBtn loginPopUpCloseBtn']"));
+			Keywords.waitForLoadPage(driver, By.xpath(xpathLnkCreateAccount));
+			Keywords.isPresenceOfElementLocated(driver, By.xpath(xpathLnkCreateAccount));
 			Keywords.clickElement(driver, By.xpath(xpathLnkCreateAccount));
 			return true;
 		} catch (Exception e) {
